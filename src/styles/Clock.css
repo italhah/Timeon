@@ -3,10 +3,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 24px;
+  gap: clamp(18px, 3vh, 28px);
   flex: 1;
   width: 100%;
-  padding: 0 16px;
+  min-width: 0;
+  padding: 24px 0;
 }
 
 .clock-loading,
@@ -24,13 +25,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(4px, 1vw, 12px);
+  gap: clamp(4px, 1.25vw, 16px);
+  width: min(100%, 900px);
 }
 
 .flip-unit {
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex: 1 1 0;
+  min-width: 0;
   gap: 12px;
 }
 
@@ -38,10 +42,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: clamp(70px, 14vw, 180px);
-  height: clamp(90px, 18vw, 230px);
-  padding: 0 clamp(8px, 1.5vw, 24px);
-  border-radius: 16px;
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 0.82;
+  padding: 0 clamp(4px, 1vw, 16px);
+  border-radius: clamp(10px, 1.5vw, 18px);
   background: var(--flip-bg);
   box-shadow:
     var(--flip-shadow-outer),
@@ -66,11 +71,11 @@
 
 .flip-text {
   font-family: 'Doto', 'Courier New', monospace;
-  font-size: clamp(48px, 11vw, 140px);
+  font-size: clamp(32px, 11vw, 140px);
   font-weight: 700;
   color: var(--flip-text);
   line-height: 1;
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
   font-variant-numeric: tabular-nums;
 }
 
@@ -84,12 +89,13 @@
 
 .separator {
   font-family: 'Doto', 'Courier New', monospace;
-  font-size: clamp(40px, 9vw, 120px);
+  flex: 0 0 auto;
+  font-size: clamp(24px, 8vw, 112px);
   font-weight: 700;
   color: var(--flip-text);
   line-height: 1;
   opacity: 0.6;
-  margin-bottom: clamp(20px, 2.5vw, 28px);
+  margin-bottom: clamp(16px, 2.5vw, 28px);
   animation: blink 2s ease-in-out infinite;
 }
 
@@ -122,22 +128,35 @@
 }
 
 @media (max-width: 600px) {
-  .flip-card {
-    min-width: clamp(52px, 16vw, 80px);
-    height: clamp(64px, 19vw, 100px);
-    border-radius: 10px;
-  }
-
   .flip-text {
-    font-size: clamp(30px, 12vw, 56px);
+    font-size: clamp(28px, 11vw, 64px);
   }
 
   .separator {
-    font-size: clamp(24px, 9vw, 44px);
-    margin-bottom: 18px;
+    font-size: clamp(22px, 8vw, 48px);
+    margin-bottom: 16px;
   }
 
   .clock-container {
-    gap: 16px;
+    gap: 18px;
+    padding: 20px 0;
+  }
+
+  .flip-unit {
+    gap: 9px;
+  }
+}
+
+@media (max-width: 360px) {
+  .clock-display {
+    gap: 3px;
+  }
+
+  .flip-text {
+    font-size: clamp(24px, 10vw, 36px);
+  }
+
+  .flip-label {
+    letter-spacing: 0.16em;
   }
 }
